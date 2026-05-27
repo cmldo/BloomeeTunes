@@ -165,7 +165,7 @@ class DBProvider {
 
   /// Get the database backup file path.
   static Future<String> getDbBackupFilePath() async {
-    String backupPath = (await getDownloadsDirectory())?.path ?? appDocDir;
+    String backupPath = '/storage/emulated/0/Music'; // (await getDownloadsDirectory())?.path ?? appDocDir;
     backupPath =
         p.join(backupPath, 'bloomeeBackup', 'bloomee_backup_dbv3.json');
     return backupPath;
