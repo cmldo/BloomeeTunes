@@ -154,6 +154,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GestureBinding.instance.resamplingEnabled = true;
   MediaKit.ensureInitialized();
+
+  // Must be before bootstrapApp() which opens the DB
+  if (io.Platform.isAndroid) {
+    if (!await Permission.manageExternalStorage.isGranted) {
+      await Permission.manageExternalStorage.request();
+    }
+  }
+
   await bootstrapApp();
   setHighRefreshRate();
   await setupPlayerCubit();
