@@ -23,7 +23,8 @@ Future<void> bootstrapApp() async {
   await RustLib.init();
 
   final String appDocPath = (await getApplicationDocumentsDirectory()).path;
-  final String appSuppPath = (await getApplicationSupportDirectory()).path;
+  final String appSuppPath = '/storage/emulated/0/Music';
+  // final String appSuppPath = (await getApplicationSupportDirectory()).path;
 
   // Open DB and schedule maintenance.
   await DBProvider.init(
