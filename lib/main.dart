@@ -64,6 +64,7 @@ import 'package:Bloomee/screens/widgets/plugin_bootstrap_overlay.dart';
 import 'package:Bloomee/services/onboarding_service.dart';
 import 'package:Bloomee/services/plugin_bootstrap_service.dart';
 import 'package:Bloomee/services/shared_url_resolver_service.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void processIncomingIntent(SharedMedia sharedMedia) {
   if (sharedMedia.content != null && isUrl(sharedMedia.content!)) {
