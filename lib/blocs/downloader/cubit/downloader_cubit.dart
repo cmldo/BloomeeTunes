@@ -101,16 +101,6 @@ class DownloaderCubit extends Cubit<DownloaderState> {
 
   Future<Directory> _getDownloadDirectory() async {
     return Directory('/storage/emulated/0/Music');
-    if (Platform.isAndroid || Platform.isIOS) {
-      final directory = (await getDownloadsDirectory()) ??
-          await getApplicationDocumentsDirectory();
-      return directory;
-    }
-    final p = await _settingsDao.getSettingStr(SettingKeys.downPathSetting);
-    if (p != null) {
-      return Directory(p);
-    }
-    return await getApplicationDocumentsDirectory();
   }
 
   void _setupLibrarySubscription() {
