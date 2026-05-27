@@ -22,7 +22,8 @@ Future<void> bootstrapApp() async {
   // Initialize flutter_rust_bridge before any Rust API call.
   await RustLib.init();
 
-  final String appDocPath = (await getApplicationDocumentsDirectory()).path;
+  // final String appDocPath = (await getApplicationDocumentsDirectory()).path;
+  final String appDocPath = '/storage/emulated/0/Music'; 
   final String appSuppPath = '/storage/emulated/0/Music';
   // final String appSuppPath = (await getApplicationSupportDirectory()).path;
 
