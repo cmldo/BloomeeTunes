@@ -98,15 +98,8 @@ class DownloaderCubit extends Cubit<DownloaderState> {
     });
     return _serviceInitialization!;
   }
-  
+
   Future<Directory> _getDownloadDirectory() async {
-    // Save directly to /storage/emulated/0/Music
-    const musicPath = '/storage/emulated/0/Music';
-    final musicDir = Directory(musicPath);
-    return musicDir;
-  }
-  
-  Future<Directory> _getDownloadDirectoryOLD() async {
     if (Platform.isAndroid || Platform.isIOS) {
       final directory = (await getDownloadsDirectory()) ??
           await getApplicationDocumentsDirectory();
