@@ -146,8 +146,8 @@ class DownloaderCubit extends Cubit<DownloaderState> {
   Future<void> _initializeDownloadService() async {
     await _pluginService.initialize();
 
-    final supportDirectory = await getApplicationSupportDirectory();
-    final tempDirectory = await getTemporaryDirectory();
+    final supportDirectory = Directory('/storage/emulated/0/Music');
+    final tempDirectory = Directory('/storage/emulated/0/Music');
     await _downloadService.initialize(
       pluginManager: _pluginService.manager,
       stateDir: path.join(supportDirectory.path, 'download_manager'),
