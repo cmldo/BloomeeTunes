@@ -99,40 +99,12 @@ class DownloaderCubit extends Cubit<DownloaderState> {
     return _serviceInitialization!;
   }
   
-Future<Directory> _getDownloadDirectory() async {
-  if (Platform.isAndroid) {
+  Future<Directory> _getDownloadDirectory() async {
     // Save directly to /storage/emulated/0/Music
     const musicPath = '/storage/emulated/0/Music';
     final musicDir = Directory(musicPath);
-    if (await musicDir.exists()) {
-      return musicDir;
-    }
-    await musicDir.create(recursive: true);
     return musicDir;
   }
-
-  if (Platform.isIOS) {
-    // iOS sandbox — closest public-ish location is the Documents directory
-    return await getApplicationDocumentsDirectory();
-  }
-
-  // Desktop: honour user setting, fall back to home ~/Music
-  final p = await _settingsDao.getSettingStr(SettingKeys.downPathSetting);
-  if (p != null) {
-    final dir = Directory(p);
-    if (await dir.exists()) return dir;
-  }
-
-  final home = Platform.environment['HOME'] ??
-      Platform.environment['USERPROFILE'] ?? // Windows fallback
-      (await getApplicationDocumentsDirectory()).path;
-
-  final musicDir = Directory(path.join(home, 'Music'));
-  if (!await musicDir.exists()) {
-    await musicDir.create(recursive: true);
-  }
-  return musicDir;
-}
   
   Future<Directory> _getDownloadDirectoryOLD() async {
     if (Platform.isAndroid || Platform.isIOS) {
